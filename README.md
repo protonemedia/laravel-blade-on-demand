@@ -15,20 +15,47 @@ composer require protonemedia/laravel-blade-on-demand
 
 ## Usage
 
+### Render a Blade Template
 ``` php
 
-BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
+$output = BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
 
-//
+echo $output;
 
+// "Hello Protone Media"
+```
+
+### Render a Markdown Mail
+``` php
 $contents = implode(PHP_EOL, [
     '@component("mail::message")',
     '# Hello {{ $name }}',
     '@endcomponent',
 ]);
 
-BladeOnDemand::renderMarkdownMail($contents, ['name' => 'Protone Media']);
+$output = BladeOnDemand::renderMarkdownMail($contents, ['name' => 'Protone Media']);
 
+echo $output->toHtml());
+
+// <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+// <html xmlns="http://www.w3.org/1999/xhtml">
+// <head>
+//     ...
+// </head>
+// <body>
+// <style>
+//     ...
+// </style>
+
+// <table>
+// ...
+// </table>
+// </body>
+// </html>
+
+```
+
+```php
 BladeOnDemand::renderMarkdownText($contents, ['name' => 'Protone Media']);
 
 BladeOnDemand::parseMarkdownText($contents, ['name' => 'Protone Media']);

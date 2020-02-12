@@ -2,7 +2,6 @@
 
 namespace ProtoneMedia\BladeOnDemand;
 
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Factory as ViewFactory;
@@ -58,9 +57,9 @@ class BladeOnDemandRenderer
      *
      * @param string $contents
      * @param array $data
-     * @return \Illuminate\Contracts\Support\Htmlable
+     * @return \Illuminate\Support\HtmlString
      */
-    public function renderMarkdownMail(string $contents, array $data = []): Htmlable
+    public function renderMarkdownMail(string $contents, array $data = []): HtmlString
     {
         $this->viewFactory->replaceNamespace('mail', $this->markdown->htmlComponentPaths());
 
@@ -79,9 +78,9 @@ class BladeOnDemandRenderer
      *
      * @param string $contents
      * @param array $data
-     * @return \Illuminate\Contracts\Support\Htmlable
+     * @return \Illuminate\Support\HtmlString
      */
-    public function renderMarkdownText(string $contents, array $data = []): Htmlable
+    public function renderMarkdownText(string $contents, array $data = []): HtmlString
     {
         $this->viewFactory->replaceNamespace('mail', $this->markdown->textComponentPaths());
 
@@ -97,10 +96,12 @@ class BladeOnDemandRenderer
      *
      * @param string $contents
      * @param array $data
-     * @return Htmlable
+     * @return \Illuminate\Support\HtmlString
      */
-    public function parseMarkdownText(string $contents, array $data = []): Htmlable
+    public function parseMarkdownText(string $contents, array $data = []): HtmlString
     {
-        return $this->markdown->parse($this->renderMarkdownText($contents, $data));
+        return $this->markdown->parse(
+            (string) $this->renderMarkdownText($contents, $data)
+        );
     }
 }
