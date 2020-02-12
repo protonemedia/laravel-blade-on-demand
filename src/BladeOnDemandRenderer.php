@@ -3,7 +3,6 @@
 namespace ProtoneMedia\BladeOnDemand;
 
 use Illuminate\Mail\Markdown;
-use Illuminate\Support\HtmlString;
 use Illuminate\View\Factory as ViewFactory;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
@@ -57,20 +56,18 @@ class BladeOnDemandRenderer
      *
      * @param string $contents
      * @param array $data
-     * @return \Illuminate\Support\HtmlString
+     * @return string
      */
-    public function renderMarkdownMail(string $contents, array $data = []): HtmlString
+    public function renderMarkdownMailToHtml(string $contents, array $data = []): string
     {
         $this->viewFactory->replaceNamespace('mail', $this->markdown->htmlComponentPaths());
 
         $rendered = $this->render($contents, $data);
 
-        $renderedWithInlineCss = $this->cssInliner->convert(
+        return $this->cssInliner->convert(
             $rendered,
             $this->viewFactory->make('mail::themes.' . config('mail.markdown.theme', 'default'))->render()
         );
-
-        return new HtmlString($renderedWithInlineCss);
     }
 
     /**
@@ -78,17 +75,15 @@ class BladeOnDemandRenderer
      *
      * @param string $contents
      * @param array $data
-     * @return \Illuminate\Support\HtmlString
+     * @return string
      */
-    public function renderMarkdownText(string $contents, array $data = []): HtmlString
+    public function renderMarkdownMailToText(string $contents, array $data = []): string
     {
         $this->viewFactory->replaceNamespace('mail', $this->markdown->textComponentPaths());
 
         $rendered = $this->render($contents, $data);
 
-        return new HtmlString(
-            html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n\n", $rendered), ENT_QUOTES, 'UTF-8')
-        );
+        return html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n\n", $rendered), ENT_QUOTES, 'UTF-8');
     }
 
     /**
@@ -96,12 +91,10 @@ class BladeOnDemandRenderer
      *
      * @param string $contents
      * @param array $data
-     * @return \Illuminate\Support\HtmlString
+     * @return string
      */
-    public function parseMarkdownText(string $contents, array $data = []): HtmlString
+    public function parseMarkdownMail(string $contents, array $data = []): string
     {
-        return $this->markdown->parse(
-            (string) $this->renderMarkdownText($contents, $data)
-        );
+        return $this->markdown->parse($this->renderMarkdownMailToText($contents, $data));
     }
 }

@@ -15,9 +15,8 @@ composer require protonemedia/laravel-blade-on-demand
 
 ## Usage
 
-### Render a Blade Template
+### Render Blade template
 ``` php
-
 $output = BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
 
 echo $output;
@@ -25,7 +24,8 @@ echo $output;
 // "Hello Protone Media"
 ```
 
-### Render a Markdown Mail
+### Render Markdown Mail to HTML
+
 ``` php
 $contents = implode(PHP_EOL, [
     '@component("mail::message")',
@@ -33,7 +33,7 @@ $contents = implode(PHP_EOL, [
     '@endcomponent',
 ]);
 
-$output = BladeOnDemand::renderMarkdownMail($contents, ['name' => 'Protone Media']);
+$output = BladeOnDemand::renderMarkdownMailToHtml($contents, ['name' => 'Protone Media']);
 
 echo $output->toHtml());
 
@@ -49,17 +49,49 @@ echo $output->toHtml());
 
 // <table>
 // ...
+// <h1>Hello Protone Media</h1>
+// ...
 // </table>
 // </body>
 // </html>
-
 ```
 
+### Render Markdown Mail to text
+
 ```php
-BladeOnDemand::renderMarkdownText($contents, ['name' => 'Protone Media']);
+$contents = implode(PHP_EOL, [
+    '@component("mail::message")',
+    '# Hello {{ $name }}',
+    '@endcomponent',
+]);
 
-BladeOnDemand::parseMarkdownText($contents, ['name' => 'Protone Media']);
+$output = BladeOnDemand::renderMarkdownMailToText($contents, ['name' => 'Protone Media']);
 
+echo $output;
+
+// [AppName](http://localhost)
+//
+// # Hello Protone Media
+//
+// © 2020 AppName. All rights reserved.
+```
+
+### Parse Maildown Mail
+
+```php
+$contents = implode(PHP_EOL, [
+    '@component("mail::message")',
+    '# Hello {{ $name }}',
+    '@endcomponent',
+]);
+
+$output = BladeOnDemand::parseMarkdownMail($contents, ['name' => 'Protone Media']);
+
+echo $output;
+
+// <p><a href="http://localhost">Laravel</a></p>
+// <h1>Hello Protone Media</h1>
+// <p>© 2020 Laravel. All rights reserved.</p>
 ```
 
 ### Testing

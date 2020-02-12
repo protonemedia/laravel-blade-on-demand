@@ -34,13 +34,13 @@ class BladeOnDemandTest extends TestCase
             '@endcomponent',
         ]);
 
-        $rendered = BladeOnDemand::renderMarkdownMail(
+        $rendered = BladeOnDemand::renderMarkdownMailToHtml(
             $contents,
             ['name' => 'Protone Media']
         );
 
-        $this->assertTrue(Str::contains($rendered->toHtml(), '<html'));
-        $this->assertTrue(Str::contains($rendered->toHtml(), 'Hello Protone Media</h1>'));
+        $this->assertTrue(Str::contains($rendered, '<html'));
+        $this->assertTrue(Str::contains($rendered, 'Hello Protone Media</h1>'));
     }
 
     /** @test */
@@ -52,13 +52,13 @@ class BladeOnDemandTest extends TestCase
             '@endcomponent',
         ]);
 
-        $rendered = BladeOnDemand::renderMarkdownText(
+        $rendered = BladeOnDemand::renderMarkdownMailToText(
             $contents,
             ['name' => 'Protone Media']
         );
 
-        $this->assertTrue(Str::contains($rendered->toHtml(), '# Hello Protone Media'));
-        $this->assertFalse(Str::contains($rendered->toHtml(), '<html'));
+        $this->assertTrue(Str::contains($rendered, '# Hello Protone Media'));
+        $this->assertFalse(Str::contains($rendered, '<html'));
     }
 
     /** @test */
@@ -70,12 +70,12 @@ class BladeOnDemandTest extends TestCase
             '@endcomponent',
         ]);
 
-        $rendered = BladeOnDemand::parseMarkdownText(
+        $rendered = BladeOnDemand::parseMarkdownMail(
             $contents,
             ['name' => 'Protone Media']
         );
 
-        $this->assertTrue(Str::contains($rendered->toHtml(), '<h1>Hello Protone Media</h1>'));
-        $this->assertFalse(Str::contains($rendered->toHtml(), '<html'));
+        $this->assertTrue(Str::contains($rendered, '<h1>Hello Protone Media</h1>'));
+        $this->assertFalse(Str::contains($rendered, '<html'));
     }
 }
