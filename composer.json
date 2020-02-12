@@ -1,0 +1,54 @@
+{
+    "name": "protonemedia/laravel-blade-on-demand",
+    "description": "Compile Blade templates in memory",
+    "keywords": [
+        "protonemedia",
+        "laravel-blade-on-demand"
+    ],
+    "homepage": "https://github.com/protonemedia/laravel-blade-on-demand",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Pascal Baljet",
+            "email": "pascal@protone.media",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/mail": "^6.0",
+        "illuminate/view": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProtoneMedia\\BladeOnDemand\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ProtoneMedia\\BladeOnDemand\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ProtoneMedia\\BladeOnDemand\\BladeOnDemandServiceProvider"
+            ],
+            "aliases": {
+                "BladeOnDemand": "ProtoneMedia\\BladeOnDemand\\Facades\\BladeOnDemand"
+            }
+        }
+    }
+}
