@@ -48,9 +48,9 @@ echo $output->toHtml());
 // </style>
 
 // <table>
-// ...
-// <h1>Hello Protone Media</h1>
-// ...
+//     ...
+//     <h1>Hello Protone Media</h1>
+//     ...
 // </table>
 // </body>
 // </html>
@@ -89,9 +89,9 @@ $output = BladeOnDemand::parseMarkdownMail($contents, ['name' => 'Protone Media'
 
 echo $output;
 
-// <p><a href="http://localhost">Laravel</a></p>
+// <p><a href="http://localhost">AppName</a></p>
 // <h1>Hello Protone Media</h1>
-// <p>© 2020 Laravel. All rights reserved.</p>
+// <p>© 2020 AppName. All rights reserved.</p>
 ```
 
 ### Testing
