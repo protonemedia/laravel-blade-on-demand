@@ -91,7 +91,7 @@ echo $output;
 
 ### Render Markdown Mail to text
 
-Similair feature as the above `renderMarkdownMailToHtml` except it uses components from the `text` directory as described in the [Laravel documentation](https://laravel.com/docs/7.x/mail#customizing-the-components).
+Similair feature as the above `renderMarkdownMailToHtml` method except it uses components from the `text` directory. You can read more about this feature in the [Laravel documentation](https://laravel.com/docs/7.x/mail#customizing-the-components).
 
 ```php
 $contents = implode(PHP_EOL, [
