@@ -89,6 +89,14 @@ echo $output;
 // </html>
 ```
 
+You can optionally specify a theme, just like calling the `theme` method [on a Mailable](https://laravel.com/docs/7.x/notifications#customizing-the-components).
+
+```php
+
+BladeOnDemand::theme('invoice')->renderMarkdownMailToHtml($contents, $data);
+
+```
+
 ### Render Markdown Mail to text
 
 Similair feature as the above `renderMarkdownMailToHtml` method except it uses components from the `text` directory. You can read more about this feature in the [Laravel documentation](https://laravel.com/docs/7.x/mail#customizing-the-components).
