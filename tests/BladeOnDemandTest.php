@@ -48,7 +48,7 @@ class BladeOnDemandTest extends TestCase
         $rendered = BladeOnDemand::fillMissingVariables(function ($variable) {
             return "_MISSING_{$variable}_MISSING_";
         })->render(
-            'Hello {{ $name }}',
+            'Hello {{ $name }}'
         );
 
         $this->assertEquals('Hello _MISSING_name_MISSING_', $rendered);
