@@ -27,7 +27,7 @@ class BladeOnDemandRenderer
     /**
      * Wether to fill the missing variables from the template.
      *
-     * @var boolean
+     * @var boolean|callable
      */
     private $fillMissingVariables = false;
 
