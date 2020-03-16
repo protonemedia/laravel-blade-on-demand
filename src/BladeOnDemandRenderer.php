@@ -115,7 +115,11 @@ class BladeOnDemandRenderer
 
         preg_match_all($pattern, $contents, $matches);
 
-        return $matches[1] ?? [];
+        $variables = $matches[1] ?? [];
+
+        return array_filter($variables, function ($variable) use ($data) {
+            return !array_key_exists($variable, $data);
+        });
     }
 
     /**
@@ -128,16 +132,9 @@ class BladeOnDemandRenderer
     private function addMissingVariables(string $contents, array $data = []): array
     {
         foreach (static::getMissingVariables($contents, $data) as $variable) {
-            if (array_key_exists($variable, $data)) {
-                continue;
-            }
-
-            if (!is_callable($this->fillMissingVariables)) {
-                $data[$variable] = $variable;
-                continue;
-            }
-
-            $data[$variable] = call_user_func_array($this->fillMissingVariables, [$variable]);
+            $data[$variable] = is_callable($this->fillMissingVariables)
+                ? call_user_func_array($this->fillMissingVariables, [$variable])
+                : $variable;
         }
 
         return $data;

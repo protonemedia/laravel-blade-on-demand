@@ -38,10 +38,11 @@ class BladeOnDemandTest extends TestCase
     public function it_can_fill_the_missing_variables_in_the_template()
     {
         $rendered = BladeOnDemand::fillMissingVariables()->render(
-            'Hello {{ $name }}'
+            'Hello {{ $name }} and {{ $name2 }}',
+            ['name' => 'Protone Media']
         );
 
-        $this->assertEquals('Hello name', $rendered);
+        $this->assertEquals('Hello Protone Media and name2', $rendered);
     }
 
     /** @test */
