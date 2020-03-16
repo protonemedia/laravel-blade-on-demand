@@ -22,7 +22,7 @@ composer require protonemedia/laravel-blade-on-demand
 You can render any valid [Blade Template](https://laravel.com/docs/7.x/blade) by calling the `render` method on the `BladeOnDemand` facade. The method only takes two parameters, the template content and the data you want to pass to the template.
 
 ``` php
-echo BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
+$output = BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
 
 echo $output;
 
@@ -38,7 +38,7 @@ This feature prevents your render from failing whenever a variable is missing in
 ``` php
 $output = BladeOnDemand::fillMissingVariables()->render('Hello {{ $name }}', []);
 
-echo $output
+echo $output;
 
 // "Hello name"
 ```
@@ -46,11 +46,11 @@ echo $output
 You could also use this feature to preview a template without any data. Note that this might give unexpected results when using statements. You can also pass a `callable` to the `fillMissingVariables` method to customize the handling of missing variables:
 
 ``` php
-$output = BladeOnDemand::fillMissingVariables(function($variable) {
-    return "_MISSING_{$variable}_MISSING_";
-})->render('Hello {{ $name }}', []);
+$output = BladeOnDemand::fillMissingVariables(
+    fn ($variable) => "_MISSING_{$variable}_MISSING_"
+)->render('Hello {{ $name }}');
 
-echo $output
+echo $output;
 
 // "Hello _MISSING_name_MISSING_"
 ```
