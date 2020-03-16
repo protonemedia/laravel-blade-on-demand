@@ -2,7 +2,9 @@
 
 namespace Protonemedia\BladeOnDemand\Tests;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;
 use ProtoneMedia\BladeOnDemand\BladeOnDemandServiceProvider;
 use ProtoneMedia\BladeOnDemand\Facades\BladeOnDemand;
@@ -55,7 +57,7 @@ class BladeOnDemandTest extends TestCase
     }
 
     /** @test */
-    public function it_can_a_markdown_mail()
+    public function it_can_render_a_markdown_mail()
     {
         $contents = implode(PHP_EOL, [
             '@component("mail::message")',
@@ -64,6 +66,42 @@ class BladeOnDemandTest extends TestCase
         ]);
 
         $rendered = BladeOnDemand::renderMarkdownMailToHtml(
+            $contents,
+            ['name' => 'Protone Media']
+        );
+
+        $this->assertTrue(Str::contains($rendered, '<html'));
+        $this->assertTrue(Str::contains($rendered, 'Hello Protone Media</h1>'));
+    }
+
+    /** @test */
+    public function it_can_render_a_markdown_mail_with_a_custom_theme()
+    {
+        $contents = implode(PHP_EOL, [
+            '@component("mail::message")',
+            '# Hello {{ $name }}',
+            '@endcomponent',
+        ]);
+
+        try {
+            BladeOnDemand::theme('red')->renderMarkdownMailToHtml(
+                $contents,
+                ['name' => 'Protone Media']
+            );
+
+            $this->fail('Render should have failed because of missing theme.');
+        } catch (InvalidArgumentException $e) {
+            $this->assertEquals('View [themes.red] not found.', $e->getMessage());
+        }
+
+        Artisan::call('vendor:publish', ['--tag' => 'laravel-mail']);
+
+        file_put_contents(
+            resource_path('views/vendor/mail/html/themes/blue.css'),
+            file_get_contents(resource_path('views/vendor/mail/html/themes/default.css'))
+        );
+
+        $rendered = BladeOnDemand::theme('blue')->renderMarkdownMailToHtml(
             $contents,
             ['name' => 'Protone Media']
         );

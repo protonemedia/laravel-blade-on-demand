@@ -3,6 +3,7 @@
 namespace ProtoneMedia\BladeOnDemand;
 
 use Illuminate\Mail\Markdown;
+use Illuminate\Support\Str;
 use Illuminate\View\Factory as ViewFactory;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
@@ -30,11 +31,20 @@ class BladeOnDemandRenderer
      */
     private $fillMissingVariables = false;
 
+    /**
+     * The current theme being used when generating emails.
+     *
+     * @var string
+     */
+    private $theme = 'default';
+
     public function __construct(ViewFactory $viewFactory, Markdown $markdown, CssToInlineStyles $cssInliner)
     {
         $this->viewFactory = $viewFactory;
         $this->markdown    = $markdown;
         $this->cssInliner  = $cssInliner;
+
+        $this->theme = config('mail.markdown.theme', 'default');
     }
 
     /**
@@ -46,6 +56,19 @@ class BladeOnDemandRenderer
     public function fillMissingVariables(callable $callback = null)
     {
         $this->fillMissingVariables = $callback ?: true;
+
+        return $this;
+    }
+
+    /**
+     * Set the default theme to be used.
+     *
+     * @param  string  $theme
+     * @return $this
+     */
+    public function theme($theme)
+    {
+        $this->theme = $theme;
 
         return $this;
     }
@@ -74,6 +97,7 @@ class BladeOnDemandRenderer
             unlink($path);
 
             $this->fillMissingVariables = false;
+            $this->theme = config('mail.markdown.theme', 'default');
         });
     }
 
@@ -130,11 +154,15 @@ class BladeOnDemandRenderer
     {
         $this->viewFactory->replaceNamespace('mail', $this->markdown->htmlComponentPaths());
 
+        $theme = Str::contains($this->theme, '::')
+            ? $this->theme
+            : 'mail::themes.' . $this->theme;
+
         $rendered = $this->render($contents, $data);
 
         return $this->cssInliner->convert(
             $rendered,
-            $this->viewFactory->make('mail::themes.' . config('mail.markdown.theme', 'default'))->render()
+            $this->viewFactory->make($theme)->render()
         );
     }
 
