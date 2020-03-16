@@ -70,7 +70,7 @@ $output = BladeOnDemand::renderMarkdownMailToHtml($contents, ['name' => 'Protone
 
 echo $output;
 
-// <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+// <!DOCTYPE>
 // <html xmlns="http://www.w3.org/1999/xhtml">
 // <head>
 //     ...
@@ -92,9 +92,7 @@ echo $output;
 You can optionally specify a theme, just like calling the `theme` method [on a Mailable](https://laravel.com/docs/7.x/notifications#customizing-the-components).
 
 ```php
-
 BladeOnDemand::theme('invoice')->renderMarkdownMailToHtml($contents, $data);
-
 ```
 
 ### Render Markdown Mail to text
