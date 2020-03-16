@@ -23,6 +23,35 @@ class BladeOnDemandTest extends TestCase
         );
 
         $this->assertEquals('Hello Protone Media', $rendered);
+
+        $rendered = BladeOnDemand::render(
+            '@if($hello) Hello @else Bye @endif{{ $name }}',
+            ['name' => 'Protone Media', 'hello' => false]
+        );
+
+        $this->assertEquals('Bye Protone Media', $rendered);
+    }
+
+    /** @test */
+    public function it_can_fill_the_missing_variables_in_the_template()
+    {
+        $rendered = BladeOnDemand::fillMissingVariables()->render(
+            'Hello {{ $name }}',
+        );
+
+        $this->assertEquals('Hello name', $rendered);
+    }
+
+    /** @test */
+    public function it_can_fill_the_missing_variables_in_the_template_with_a_custom_value()
+    {
+        $rendered = BladeOnDemand::fillMissingVariables(function ($variable) {
+            return "_MISSING_{$variable}_MISSING_";
+        })->render(
+            'Hello {{ $name }}',
+        );
+
+        $this->assertEquals('Hello _MISSING_name_MISSING_', $rendered);
     }
 
     /** @test */
