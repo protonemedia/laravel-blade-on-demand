@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/protonemedia/laravel-blade-on-demand.svg?style=flat-square)](https://scrutinizer-ci.com/g/protonemedia/laravel-blade-on-demand)
 [![Total Downloads](https://img.shields.io/packagist/dt/protonemedia/laravel-blade-on-demand.svg?style=flat-square)](https://packagist.org/packages/protonemedia/laravel-blade-on-demand)
 
-Laravel package to compile Blade templates in memory. Requires PHP 7.2 or higher, compatible with Laravel 6 and higher.
+Laravel package to compile Blade templates in memory. Requires PHP 7.3 or higher, compatible with Laravel 6 and higher.
 
 ## Installation
 
