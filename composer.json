@@ -17,11 +17,11 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0 || ^8.1",
-        "illuminate/mail": "^8.67",
-        "illuminate/view": "^8.67"
+        "illuminate/mail": "^8.67 || ^9.0",
+        "illuminate/view": "^8.67 || ^9.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.23",
+        "orchestra/testbench": "^6.23 || ^7.0",
         "phpunit/phpunit": "^9.4"
     },
     "autoload": {
