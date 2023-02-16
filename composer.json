@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": "^8.0 || ^8.1 || ^8.2",
-        "illuminate/mail": "^9.0",
-        "illuminate/view": "^9.0"
+        "illuminate/mail": "^9.0|^10.0",
+        "illuminate/view": "^9.0|^10.0"
     },
     "require-dev": {
         "orchestra/testbench": "^7.0",
