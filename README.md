@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/protonemedia/laravel-blade-on-demand.svg?style=flat-square)](https://scrutinizer-ci.com/g/protonemedia/laravel-blade-on-demand)
 [![Total Downloads](https://img.shields.io/packagist/dt/protonemedia/laravel-blade-on-demand.svg?style=flat-square)](https://packagist.org/packages/protonemedia/laravel-blade-on-demand)
 
-Laravel package to compile Blade templates in memory. Requires PHP 8.2 or higher, compatible with Laravel 10+.
+Laravel package to compile Blade templates in memory. Requires PHP 8.2 or higher, compatible with Laravel 11+.
 
 ## Sponsor Us
 
@@ -25,7 +25,7 @@ composer require protonemedia/laravel-blade-on-demand
 
 ### Render Blade template
 
-You can render any valid [Blade Template](https://laravel.com/docs/7.x/blade) by calling the `render` method on the `BladeOnDemand` facade. The method only takes two parameters, the template content and the data you want to pass to the template.
+You can render any valid [Blade Template](https://laravel.com/docs/11.x/blade) by calling the `render` method on the `BladeOnDemand` facade. The method only takes two parameters, the template content and the data you want to pass to the template.
 
 ``` php
 $output = BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
@@ -63,7 +63,7 @@ echo $output;
 
 ### Render Markdown Mail to HTML
 
-This feature can be used to render a mail as if you're using a [Markdown mailable](https://laravel.com/docs/7.x/mail#writing-markdown-messages).
+This feature can be used to render a mail as if you're using a [Markdown mailable](https://laravel.com/docs/11.x/mail#writing-markdown-messages).
 
 ``` php
 $contents = implode(PHP_EOL, [
@@ -95,7 +95,7 @@ echo $output;
 // </html>
 ```
 
-You can optionally specify a theme, just like calling the `theme` method [on a Mailable](https://laravel.com/docs/7.x/notifications#customizing-the-components).
+You can optionally specify a theme, just like calling the `theme` method [on a Mailable](https://laravel.com/docs/11.x/notifications#customizing-the-components).
 
 ```php
 BladeOnDemand::theme('invoice')->renderMarkdownMailToHtml($contents, $data);
@@ -103,7 +103,7 @@ BladeOnDemand::theme('invoice')->renderMarkdownMailToHtml($contents, $data);
 
 ### Render Markdown Mail to text
 
-Similair feature as the above `renderMarkdownMailToHtml` method except it uses components from the `text` directory. You can read more about this feature in the [Laravel documentation](https://laravel.com/docs/7.x/mail#customizing-the-components).
+Similair feature as the above `renderMarkdownMailToHtml` method except it uses components from the `text` directory. You can read more about this feature in the [Laravel documentation](https://laravel.com/docs/11.x/mail#customizing-the-components).
 
 ```php
 $contents = implode(PHP_EOL, [
