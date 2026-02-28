@@ -1,14 +1,8 @@
-{{--
-  Laravel Boost guidelines (repository core)
+{{-- Laravel Blade On Demand Guidelines for AI Code Assistants --}}
+{{-- Source: https://github.com/protonemedia/laravel-blade-on-demand --}}
+{{-- License: MIT | (c) ProtoneMedia --}}
 
-  This file intentionally stays small: it links this repository to its package-specific Boost skill.
---}}
+## Laravel Blade On Demand
 
-<section>
-    <h2>Repository development skill</h2>
-
-    <p>
-        When working on this repository, activate the <code>laravel-blade-on-demand-development</code> skill.
-        It contains package-specific conventions, testing notes, and common pitfalls.
-    </p>
-</section>
+- Renders Blade templates on-demand, useful for previews and dynamic compilation.
+- Always activate the `laravel-blade-on-demand-development` skill when making package-specific changes.

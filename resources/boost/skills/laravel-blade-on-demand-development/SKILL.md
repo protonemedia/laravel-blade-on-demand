@@ -1,24 +1,26 @@
-# laravel-blade-on-demand-development
+---
+name: laravel-blade-on-demand-development
+description: Development guidance for `protonemedia/laravel-blade-on-demand` (Renders Blade templates on-demand, useful for previews and dynamic compilation.).
+license: MIT
+metadata:
+  author: ProtoneMedia
+  source: https://github.com/protonemedia/laravel-blade-on-demand
+---
 
-## When to activate
-- You are modifying code in **laravel-blade-on-demand**.
-- You are reviewing/triaging issues or PRs for **laravel-blade-on-demand**.
+# Laravel Blade On Demand Development
+
+## Overview
+Use this skill when changing package code, docs, tests, or release tooling for `protonemedia/laravel-blade-on-demand`.
+
+## When to Activate
+- You are modifying code in this repository.
+- You are reviewing/triaging issues or PRs for this package.
 - You are preparing a release (version bump, tag, changelog).
 
-## Aim
-Ship safe improvements while preserving the documented public API and keeping the test suite green.
+## Workflow
+1. Skim the README / docs to confirm the public contract.
+2. Read  for common patterns and pitfalls.
+3. Keep changes small, add/update tests when behavior changes, and avoid breaking API changes.
 
-## Do
-- Keep PRs small and focused.
-- Treat documented behavior (README) as the supported contract.
-- Add or update tests when behavior changes.
-- Prefer Laravel conventions (container bindings, facades, config publishing, events).
-
-## Don’t
-- Introduce breaking changes without clearly documenting them.
-- Add new runtime dependencies without strong justification.
-- Bake in app-specific assumptions; keep the package reusable.
-
-## Quick workflow
-- Install dependencies: `composer install`
-- Run tests: `composer test` (or the repository’s configured test command)
+## References
+- 
