@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/protonemedia/laravel-blade-on-demand.svg?style=flat-square)](https://scrutinizer-ci.com/g/protonemedia/laravel-blade-on-demand)
 [![Total Downloads](https://img.shields.io/packagist/dt/protonemedia/laravel-blade-on-demand.svg?style=flat-square)](https://packagist.org/packages/protonemedia/laravel-blade-on-demand)
 
-Laravel package to compile Blade templates in memory. Requires PHP 8.2 or higher, compatible with Laravel 11+.
+Laravel package to compile Blade templates in memory. Requires PHP 8.2 or higher, compatible with Laravel 10+.
 
 ## Sponsor Us
 
@@ -25,7 +25,7 @@ composer require protonemedia/laravel-blade-on-demand
 
 ### Render Blade template
 
-You can render any valid [Blade Template](https://laravel.com/docs/11.x/blade) by calling the `render` method on the `BladeOnDemand` facade. The method only takes two parameters, the template content and the data you want to pass to the template.
+You can render any valid [Blade Template](https://laravel.com/docs/7.x/blade) by calling the `render` method on the `BladeOnDemand` facade. The method only takes two parameters, the template content and the data you want to pass to the template.
 
 ``` php
 $output = BladeOnDemand::render('Hello {{ $name }}', ['name' => 'Protone Media']);
@@ -63,7 +63,7 @@ echo $output;
 
 ### Render Markdown Mail to HTML
 
-This feature can be used to render a mail as if you're using a [Markdown mailable](https://laravel.com/docs/11.x/mail#writing-markdown-messages).
+This feature can be used to render a mail as if you're using a [Markdown mailable](https://laravel.com/docs/7.x/mail#writing-markdown-messages).
 
 ``` php
 $contents = implode(PHP_EOL, [
@@ -95,7 +95,7 @@ echo $output;
 // </html>
 ```
 
-You can optionally specify a theme, just like calling the `theme` method [on a Mailable](https://laravel.com/docs/11.x/notifications#customizing-the-components).
+You can optionally specify a theme, just like calling the `theme` method [on a Mailable](https://laravel.com/docs/7.x/notifications#customizing-the-components).
 
 ```php
 BladeOnDemand::theme('invoice')->renderMarkdownMailToHtml($contents, $data);
@@ -103,7 +103,7 @@ BladeOnDemand::theme('invoice')->renderMarkdownMailToHtml($contents, $data);
 
 ### Render Markdown Mail to text
 
-Similair feature as the above `renderMarkdownMailToHtml` method except it uses components from the `text` directory. You can read more about this feature in the [Laravel documentation](https://laravel.com/docs/11.x/mail#customizing-the-components).
+Similair feature as the above `renderMarkdownMailToHtml` method except it uses components from the `text` directory. You can read more about this feature in the [Laravel documentation](https://laravel.com/docs/7.x/mail#customizing-the-components).
 
 ```php
 $contents = implode(PHP_EOL, [
@@ -159,7 +159,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Other Laravel packages
 
-- [Inertia Modal](https://inertiaui.com/inertia-modal/docs/introduction): With Inertia Modal, you can easily open any route in a Modal or Slideover without having to change anything about your existing routes or controllers.
 * [`Inertia Table`](https://inertiaui.com/inertia-table?utm_source=github&utm_campaign=laravel-blade-on-demand): The Ultimate Table for Inertia.js with built-in Query Builder.
 * [`Laravel Cross Eloquent Search`](https://github.com/protonemedia/laravel-cross-eloquent-search): Laravel package to search through multiple Eloquent models.
 * [`Laravel Eloquent Scope as Select`](https://github.com/protonemedia/laravel-eloquent-scope-as-select): Stop duplicating your Eloquent query scopes and constraints in PHP. This package lets you re-use your query scopes and constraints by adding them as a subquery.
@@ -183,4 +182,3 @@ If you discover any security related issues, please email pascal@protone.media i
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
