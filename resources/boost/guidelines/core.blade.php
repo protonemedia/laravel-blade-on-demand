@@ -4,7 +4,5 @@
 
 ## Laravel Blade On Demand
 
-- This project uses **Laravel Blade On Demand** (ProtoneMedia) in a Laravel application.
-- Activate the **`laravel-blade-on-demand-development`** skill when you are **integrating, configuring, or using** this package in app code (controllers, jobs, tests, config, routes, Blade, etc.).
-- Use the reference doc for the package’s public API and common recipes:
-  - `resources/boost/skills/laravel-blade-on-demand-development/references/laravel-blade-on-demand-guide.md`
+- `protonemedia/laravel-blade-on-demand.` helps you work with Laravel Blade On Demand in Laravel.
+- Always activate the `laravel-blade-on-demand-development` skill when working with Laravel Blade On Demand configuration, integration, or any code that relies on this package.

@@ -1,5 +1,7 @@
 # Laravel Blade On Demand Reference
 
+Complete reference for `protonemedia/laravel-blade-on-demand.`. Full documentation: https://github.com/protonemedia/laravel-blade-on-demand#readme
+
 Complete reference for `protonemedia/laravel-blade-on-demand`.
 
 Primary docs: https://github.com/protonemedia/laravel-blade-on-demand#readme
