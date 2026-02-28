@@ -4,5 +4,7 @@
 
 ## Laravel Blade On Demand
 
-- Renders Blade templates on-demand, useful for previews and dynamic compilation.
+- Compiles and renders Blade templates in-memory (string → rendered output), including Markdown mail rendering helpers.
 - Always activate the `laravel-blade-on-demand-development` skill when making package-specific changes.
+- For supported API, options, and common pitfalls, consult:
+  - `resources/boost/skills/laravel-blade-on-demand-development/references/laravel-blade-on-demand-guide.md`

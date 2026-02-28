@@ -1,6 +1,6 @@
 ---
 name: laravel-blade-on-demand-development
-description: Development guidance for protonemedia/laravel-blade-on-demand. Renders Blade templates on-demand, useful for previews and dynamic compilation.
+description: Development guidance for protonemedia/laravel-blade-on-demand (render Blade strings + Markdown mail helpers).
 license: MIT
 metadata:
   author: ProtoneMedia
@@ -9,18 +9,12 @@ metadata:
 
 # Laravel Blade On Demand Development
 
-## Overview
-Use this skill when changing package code, docs, tests, or release tooling for protonemedia/laravel-blade-on-demand.
-
-## When to Activate
-- You are modifying code in this repository.
-- You are reviewing/triaging issues or PRs for this package.
-- You are preparing a release (version bump, tag, changelog).
+Use this skill when changing code/docs/tests in `protonemedia/laravel-blade-on-demand`.
 
 ## Workflow
-1. Skim the README / docs to confirm the public contract.
-2. Read references/laravel-blade-on-demand-guide.md for common patterns and pitfalls.
-3. Keep changes small, add/update tests when behavior changes, and avoid breaking API changes.
+1. Treat the README as the source of truth for the facade API and helper methods.
+2. Consult `references/laravel-blade-on-demand-guide.md` for supported use-cases (missing vars, Markdown mail rendering).
+3. Avoid breaking behavior around Blade compilation, variable handling, and mail component rendering.
 
-## References
+## Reference
 - references/laravel-blade-on-demand-guide.md
