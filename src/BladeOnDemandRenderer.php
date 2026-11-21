@@ -53,7 +53,7 @@ class BladeOnDemandRenderer
      * @param callable $callback
      * @return $this
      */
-    public function fillMissingVariables(callable $callback = null)
+    public function fillMissingVariables(?callable $callback = null)
     {
         $this->fillMissingVariables = $callback ?: true;
 
